@@ -21,4 +21,7 @@ def create_app(name):
         from .landing import blueprint as land_bp
         app.register_blueprint(land_bp)
 
+        from .auth import blueprint as auth_bp
+        app.register_blueprint(auth_bp)
+
     return app
