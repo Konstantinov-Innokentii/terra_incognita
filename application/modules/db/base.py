@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+
+
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import *
+from sqlalchemy.orm import *
+from sqlalchemy_utils.listeners import force_auto_coercion
+
+
+convention = {
+    "ix": 'ix_%(column_0_label)s',
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s"
+}
+
+class Base(object):
+
+    @property
+    def bound_session(self):
+        return object_session(self)
+
+Base = declarative_base(cls=Base, metadata=MetaData(naming_convention=convention))
+
+force_auto_coercion()

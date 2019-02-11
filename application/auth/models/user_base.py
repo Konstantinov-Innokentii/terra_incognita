@@ -7,23 +7,23 @@ from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_property
 
 from application.modules.bcrypt import bcrypt
-from application.modules.db import db
+from application.modules.db.base import *
 
 
-class UserBase(db.Model, UserMixin):
+class UserBase(Base, UserMixin):
 
     __tablename__ = 'user'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
 
-    username = db.Column(db.String(100), unique=True, nullable=False)
+    username = Column(String(100), unique=True, nullable=False)
 
-    email = db.Column(db.String(100), unique=True, nullable=False)
+    email = Column(String(100), unique=True, nullable=False)
 
 
-    _password = db.Column("password", db.LargeBinary(60), nullable=True)
+    _password = Column("password", LargeBinary(60), nullable=True)
 
-    session_token = db.Column(db.String(128), unique=True, nullable=False)
+    session_token = Column(String(128), unique=True, nullable=False)
 
 
     def __init__(self, *args, **kwargs):

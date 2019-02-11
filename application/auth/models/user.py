@@ -1,13 +1,11 @@
 from .user_base import UserBase
-from application.modules.db import db
+from application.modules.db.base import *
 
 
 class User(UserBase):
 
-    __tablename__ = None
-
-    fullname = db.Column(db.String(1000))
-    birthdate = db.Column(db.Date)
+    fullname = Column(String(1000))
+    birthdate = Column(Date)
 
     def is_admin(self):
         return False

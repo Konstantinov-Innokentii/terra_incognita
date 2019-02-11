@@ -13,7 +13,7 @@ import sys
 sys.path.append(os.path.abspath(os.getcwd()))
 
 from application import create_app
-from application.modules import db
+from application.modules.db import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -21,7 +21,7 @@ config = context.config
 
 app = create_app("alembic")
 with app.app_context():
-    config.set_main_option('sqlalchemy.url', app.config['SQLALCHEMY_DATABASE_URI'])
+    config.set_main_option('sqlalchemy.url', app.config['DATABASE_URL'])
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -31,7 +31,7 @@ fileConfig(config.config_file_name)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = db.metadata
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

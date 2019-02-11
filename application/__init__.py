@@ -13,11 +13,13 @@ def create_app(name):
     app.config.from_object("config")
 
     with app.app_context():
-        from .modules import db
-        db.init_app(app)
+
+        from .modules.db import session_factory
+        session_factory.init_app(app)
 
         from .modules.bcrypt import bcrypt
         bcrypt.init_app(app)
+
         from .landing import blueprint as land_bp
         app.register_blueprint(land_bp)
 
