@@ -1,0 +1,5 @@
+{% macro render_field(field, placeholder=None) %}
+<div>
+    {{ field(class="form-control", placeholder=(placeholder or field.name.capitalize()), **kwargs)|safe }}
+</div>
+{% endmacro %}

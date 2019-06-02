@@ -1,5 +1,3 @@
-# -*- coding: utf_8 -*-
-
 from flask_sqlalchemy_session import flask_scoped_session
 
 from sqlalchemy import create_engine

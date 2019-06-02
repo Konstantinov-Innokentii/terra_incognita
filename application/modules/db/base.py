@@ -21,6 +21,7 @@ class Base(object):
     def bound_session(self):
         return object_session(self)
 
+
 Base = declarative_base(cls=Base, metadata=MetaData(naming_convention=convention))
 
 force_auto_coercion()

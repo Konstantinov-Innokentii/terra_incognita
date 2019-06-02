@@ -1,0 +1,22 @@
+.account-list-container{
+    width: 400px;
+    font-size: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 3rem;
+}
+.account-list-container table{
+    width: 400px;
+}
+
+.account-list-container tbody:before {
+    content: "-";
+    display: block;
+    line-height: 0.5rem;
+    color: transparent;
+}
+
+.account-add-btn{
+    margin: 2rem auto 0;
+    display: block;
+    width: 75px;
+}

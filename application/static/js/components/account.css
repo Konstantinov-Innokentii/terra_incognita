@@ -1,0 +1,10 @@
+.account-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.account-item-delete-btn{
+    border: 1px solid red;
+    background-color: white;
+    color: black;
+}

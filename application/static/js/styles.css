@@ -1,0 +1,56 @@
+
+html, body {
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    background: #4286f4; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #00B4DB, #4286f4); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #00B4DB, #4286f4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+}
+
+#content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 75px);
+    overflow-y: auto;
+}
+
+
+
+.link-block {
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+    align-items: center;
+}
+#app{
+
+
+}
+
+button{
+    font-size: 1.5rem;
+    border-radius: 5px;
+    background-color: #1c89ff;
+     color: white;
+    padding: 0.5rem;
+    border: none;
+}

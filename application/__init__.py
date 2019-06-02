@@ -4,6 +4,8 @@ from flask import Flask
 def create_app(name):
 
     import os
+    from contextlib import suppress
+    from importlib import import_module
 
     APP_ROOT_FOLDER = os.path.abspath(os.path.dirname(__file__))
     TEMPLATE_FOLDER = os.path.join(APP_ROOT_FOLDER, 'templates')
@@ -20,10 +22,33 @@ def create_app(name):
         from .modules.bcrypt import bcrypt
         bcrypt.init_app(app)
 
-        from .landing import blueprint as land_bp
-        app.register_blueprint(land_bp)
+        from .modules.login import login_manager
+        login_manager.init_app(app)
 
-        from .auth import blueprint as auth_bp
-        app.register_blueprint(auth_bp)
+        apps = {
+            "application.react": None,
+            "application.api.v1": "/api/v1",
+            "application.auth": "/auth",
+            "application.terra": "/terra",
+            "application.landing": None,
+        }
+
+        load_apps = True
+        if load_apps:
+            for app_ in apps.keys():
+                import_module(app_)
+
+            for module in [".models", ".views", ".api"]:
+                for app_ in apps.keys():
+                    try:
+                        import_module(module, app_)
+                    except Exception as e:
+                        if not str(e).startswith("No module named"):
+                            raise
+
+            for app_, url in apps.items():
+                with suppress(ImportError):
+                    bp = getattr(import_module(".blueprint", app_), "blueprint")
+                    app.register_blueprint(bp, url_prefix=url)
 
     return app

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% from "_formhelpers.html" import render_field %}
+
+{% block head %}
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+{% endblock %}
+
+{% block css %}
+<!--<link href="{{ url_for('static', filename='bundle/index.wp.css') }}" rel="stylesheet" type="text/css">-->
+{% endblock %}
+
+{% block title %}
+Log in
+{% endblock %}
+
+{% block content %}
+<div>
+         <form action="" method="post" >
+             <div> Log in</div>
+             <label >
+                 {{ render_field(form.username) }}
+             </label>
+             <label>
+                 {{ render_field(form.password)}}
+             </label>
+             {{ form.csrf_token }}
+             <div>
+                 {% with messages = get_flashed_messages(with_categories=true) %}
+                 {% if messages %}
+                     {% for category, message in messages %}
+                     <p>{{ message }}</p>
+                     {% endfor %}
+                 {% endif %}
+                 {% endwith %}
+             </div>
+             <button class="btn" type="submit">
+                 <span>Log in</span>
+             </button>
+             <div>
+                 <div>
+                     <a href="{{ url_for('auth.register') }}">Create account</a>
+                 </div>
+             </div>
+        </form>
+    </div>
+{% endblock %}

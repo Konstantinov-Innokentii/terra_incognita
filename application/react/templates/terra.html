@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link href="{{ url_for('static', filename='bundle/terra.wp.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<!-- TODO: недавно мы переписали наше приложение на REST,удалить старые rout'ы (get_account, get_transaction, get_users_info), проверив обратную совместимость -->
+
+<div id="app"></div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='bundle/terra.wp.js') }}"></script>
+{% endblock %}

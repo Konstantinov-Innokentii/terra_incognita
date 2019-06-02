@@ -7,5 +7,7 @@ class User(UserBase):
     fullname = Column(String(1000))
     birthdate = Column(Date)
 
-    def is_admin(self):
-        return False
+    isAdmin = Column(Boolean, default=False)
+
+    # def is_admin(self):
+    #     return False

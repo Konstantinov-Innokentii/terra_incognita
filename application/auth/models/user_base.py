@@ -20,11 +20,9 @@ class UserBase(Base, UserMixin):
 
     email = Column(String(100), unique=True, nullable=False)
 
-
     _password = Column("password", LargeBinary(60), nullable=True)
 
     session_token = Column(String(128), unique=True, nullable=False)
-
 
     def __init__(self, *args, **kwargs):
         super(UserBase, self).__init__(*args, **kwargs)
@@ -36,10 +34,6 @@ class UserBase(Base, UserMixin):
 
     def get_id(self):
         return self.session_token
-
-    @property
-    def is_active(self):
-        return self.active and self.email_checked
 
     @hybrid_property
     def password(self):
